@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useRef, useContext} from 'react';
 import { Link } from 'react-router-dom';
+import AppContext from '../context/AppContext';
 import '../styles/components/Information.css';
 
 const Information = () => {
+    const {state, addToBuyer} = useContext(ApContext);
+    const form = useRef(null);
+
+    const {cart} = state;
+
     return (
         <div className="Information">
             <div className="Information-content">
@@ -10,7 +16,7 @@ const Information = () => {
                     <h2>Informacion de contacto</h2>
                 </div>
                 <div className="Information-form">
-                    <form action="">
+                    <form ref={form}>
                         <input type="text" placeholder="Nombre Completo" name="name" />
                         <input type="text" placeholder="email" name="email" />
                         <input type="text" placeholder="Direccion" name="address" />
@@ -22,7 +28,9 @@ const Information = () => {
                 </div>
                 <div className="Information-buttons">
                     <div className="Information-back">
+                        <Link to="/checkout">
                         Regresar
+                        </Link>
                     </div>
                     <div className="Information-next">
                         <Link to="/checkout/payment">
